@@ -5,6 +5,9 @@ jest.dontMock("lodash");
 import UrlParser from "../UrlParser";
 import _ from "lodash";
 
+// Probar con string vacios
+//
+
 describe("Url Parser", () => {
   let variables;
   describe("with valid format String", () => {
