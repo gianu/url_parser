@@ -1,0 +1,19 @@
+{
+  "parser": "babel-eslint",
+  "ecmaFeatures": {
+    "jsx": true,
+    "modules": true
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "jest": false,
+    "describe": false,
+    "it": false,
+    "beforeEach": false,
+    "expect": false
+  }
+}

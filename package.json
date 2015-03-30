@@ -2,9 +2,11 @@
   "name": "url_parser",
   "version": "0.0.1",
   "description": "Simple URL Parser",
-  "main": "lib/index.js",
+  "main": "lib/UrlParser.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "compile": "babel src --out-dir lib && rm -rf lib/__tests__",
+    "lint": "eslint ./src/*"
   },
   "repository": {
     "type": "git",
@@ -22,7 +24,10 @@
   },
   "homepage": "https://github.com/gianu/url_parser",
   "devDependencies": {
+    "babel": "^4.7.16",
+    "babel-eslint": "babel/babel-eslint",
     "babel-jest": "^4.0.0",
+    "eslint": "eslint/eslint",
     "jest-cli": "^0.4.0"
   },
   "jest": {

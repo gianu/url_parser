@@ -1,12 +1,12 @@
-import _ from 'lodash';
+import _ from "lodash";
 
 export default class Parser {
   static parseUrl(fmt="", urlString="") {
 
-    let urlParts = urlString.split('/');
+    let urlParts = urlString.split("/");
     let map = {};
     fmt.forEach((key, index) => {
-      if (_.startsWith(key, ':')) {
+      if (_.startsWith(key, ":")) {
         let normalizedKey = key.substring(1);
         map[normalizedKey] = normalizeValue(urlParts[index]);
       }
@@ -18,11 +18,11 @@ export default class Parser {
   static parseQueryString(queryString) {
     let map = {};
     if (queryString) {
-      let variables = queryString.split('&');
+      let variables = queryString.split("&");
       variables.forEach((key) => {
-        let [k, v] = key.split('=');
+        let [k, v] = key.split("=");
 
-        if(_.endsWith(k, '[]')) {
+        if(_.endsWith(k, "[]")) {
           let normalizedKey = k.substring(0, k.length - 2);
           if (map[normalizedKey]) {
             map[normalizedKey].push(normalizeValue(v));
@@ -38,7 +38,7 @@ export default class Parser {
   }
 
   static splitUrl(urlString="") {
-    return urlString.split('?');
+    return urlString.split("?");
   }
 }
 
