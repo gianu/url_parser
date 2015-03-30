@@ -170,23 +170,60 @@ describe("Url Parser", () => {
     }); //describe: with valid url instance
 
     describe("With invalid url instance", () => {
+      let urlParser;
+      beforeEach(() => {
+        urlParser = new UrlParser("/:id/collection");
+      });
+
       describe("with no url string", () => {
         it("throws an error", () => {
-          expect(() => new UrlParser()).toThrow("Format String must be provided.");
+          expect(() => urlParser.extractVariables()).toThrow("Url must be provided.");
         });
-      }); //describe: with no url string
+      }); // describe: with no url string
 
       describe("with empty string", () => {
         it("throws an error", () => {
-          expect(() => new UrlParser("")).toThrow("Format String must be provided.");
+          expect(() => urlParser.extractVariables("")).toThrow("Url must be provided.");
         });
-      }); //describe: with emtpy string
+      }); //describe: with empty string
 
       describe("with an object different from string", () => {
         it("throws an error", () => {
-          expect(() => new UrlParser({"a": "b"})).toThrow("Format String must be a string.");
+          expect(() => urlParser.extractVariables({"a": "b"})).toThrow("Url must be a string.");
         });
-      }); //describe: with an object different from string
-    }); //describe: with invalid url instance
+      });//describe: with an object different from string
+
+      describe("with a string not starting with /", () => {
+        it("throws an error", () => {
+          expect(() => urlParser.extractVariables("6/collection")).toThrow("Url must start with /");
+        });
+      });//describe: with a string not starting with /
+    });// describe: with invalid url instance
   }); //describe: with valid format string
+
+  describe("With invalid format string", () => {
+    describe("with no format string", () => {
+      it("throws an error", () => {
+        expect(() => new UrlParser()).toThrow("Format String must be provided.");
+      });
+    }); //describe: with no url string
+
+    describe("with empty string", () => {
+      it("throws an error", () => {
+        expect(() => new UrlParser("")).toThrow("Format String must be provided.");
+      });
+    }); //describe: with emtpy string
+
+    describe("with an object different from string", () => {
+      it("throws an error", () => {
+        expect(() => new UrlParser({"a": "b"})).toThrow("Format String must be a string.");
+      });
+    }); //describe: with an object different from string
+
+    describe("with a string not starting with /", () => {
+      it("throws an error", () => {
+        expect(() => new UrlParser(":variable")).toThrow("Format String must start with /");
+      });
+    }); //describe: with a string not starting with /
+  }); //describe: with invalid format string
 }); //describe: Url Parser

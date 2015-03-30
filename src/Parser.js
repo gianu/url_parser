@@ -13,9 +13,9 @@ export default class Parser {
    * @returns A Hash with the variables (eg: {'version': 6, 'collection': 'listings', 'id': 3}).
    */
   static parseUrl(fmt="", urlString="") {
-
     let urlParts = urlString.split("/");
     let map = {};
+
     fmt.forEach((key, index) => {
       if (_.startsWith(key, ":")) {
         let normalizedKey = key.substring(1);

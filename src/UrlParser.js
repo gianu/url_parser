@@ -1,6 +1,20 @@
 import _ from "lodash";
 import Parser from "./Parser";
 
+function checkUrl(url, model="Url") {
+  if(!_.isString(url)) {
+    throw new Error(`${model} must be a string.`);
+  }
+
+  if(_.isEmpty(url)) {
+    throw new Error(`${model} must be provided.`);
+  }
+
+  if(!_.startsWith(url, "/")) {
+    throw new Error(`${model} must start with /`);
+  }
+}
+
 export default class UrlPaser {
   /*
    * @constructs UrlParser
@@ -8,13 +22,7 @@ export default class UrlPaser {
    * @throws Error if format string is empty or a non string object.
    */
   constructor(fmtString="") {
-    if(!_.isString(fmtString)) {
-      throw new Error("Format String must be a string.");
-    }
-
-    if(_.isEmpty(fmtString)) {
-      throw new Error("Format String must be provided.");
-    }
+    checkUrl(fmtString, "Format String");
 
     this.fmtString = fmtString;
   }
@@ -33,6 +41,8 @@ export default class UrlPaser {
    * @returns A Hash with the variables extracted from this url.
    */
   extractVariables(urlInstance="", override=false) {
+    checkUrl(urlInstance, "Url");
+
     let fmtParts = this.fmtString.split("/");
 
     let [url, querystring] = Parser.splitUrl(urlInstance);
