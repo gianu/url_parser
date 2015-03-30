@@ -1,0 +1,43 @@
+{
+  "name": "url_parser",
+  "version": "0.0.1",
+  "description": "Simple URL Parser",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:gianu/url_parser.git"
+  },
+  "keywords": [
+    "htttp",
+    "url",
+    "parser"
+  ],
+  "author": "Sergio Rafael Gianazza <sgianazza@gmail.com> (http://softwarepsychonaut.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gianu/url_parser/issues"
+  },
+  "homepage": "https://github.com/gianu/url_parser",
+  "devDependencies": {
+    "babel-jest": "^4.0.0",
+    "jest-cli": "^0.4.0"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "testFileExtensions": [
+      "es6",
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
+    ]
+  },
+  "dependencies": {
+    "lodash": "^3.6.0"
+  }
+}
