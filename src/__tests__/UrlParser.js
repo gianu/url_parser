@@ -1,4 +1,5 @@
 jest.dontMock('../UrlParser');
+jest.dontMock('../Parser');
 jest.dontMock('lodash');
 
 import UrlParser from '../UrlParser';
@@ -71,7 +72,7 @@ describe('Url Parser', () => {
           variables = urlParser.extractVariables('/6/api/listings/3?userId[]=1&userId[]=2&userId[]=3&sort=desc');
         });
 
-        it('returns a mpa with 5 elements', () => {
+        it('returns a map with 5 elements', () => {
           expect(_.size(variables)).toBe(5);
         });
 
