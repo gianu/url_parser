@@ -7,6 +7,14 @@ export default class UrlPaser {
    * @param {String} fmtString - The Format string to be used.
    */
   constructor(fmtString="") {
+    if(!_.isString(fmtString)) {
+      throw new Error('Format String must be a string.');
+    }
+
+    if(_.isEmpty(fmtString)) {
+      throw new Error('Format String must be provided.');
+    }
+
     this.fmtString = fmtString;
   }
 

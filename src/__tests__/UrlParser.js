@@ -5,9 +5,6 @@ jest.dontMock("lodash");
 import UrlParser from "../UrlParser";
 import _ from "lodash";
 
-// Probar con string vacios
-//
-
 describe("Url Parser", () => {
   let variables;
   describe("with valid format String", () => {
@@ -168,8 +165,28 @@ describe("Url Parser", () => {
               expect(variables.userId).toEqual([200]);
             });
           });
+        }); //describe: with query string array overriding
+      }); //describe: with parameter overriding url variables
+    }); //describe: with valid url instance
+
+    describe("With invalid url instance", () => {
+      describe("with no url string", () => {
+        it("throws an error", () => {
+          expect(() => new UrlParser()).toThrow("Format String must be provided.");
         });
-      });
-    });
-  });
-});
+      }); //describe: with no url string
+
+      describe("with empty string", () => {
+        it("throws an error", () => {
+          expect(() => new UrlParser("")).toThrow("Format String must be provided.");
+        });
+      }); //describe: with emtpy string
+
+      describe("with an object different from string", () => {
+        it("throws an error", () => {
+          expect(() => new UrlParser({'a':'b'})).toThrow("Format String must be a string.");
+        });
+      }); //describe: with an object different from string
+    }); //describe: with invalid url instance
+  }); //describe: with valid format string
+}); //describe: Url Parser
