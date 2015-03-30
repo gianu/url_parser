@@ -6,7 +6,6 @@ import _ from 'lodash';
 
 // Analizar:
 //  - Colisión en nombre url / variable (/6/users/8?users=9&pepe=soriano)
-//  - variables como array (/6/users/8?users[]='pepe'&users[]='soriano')
 //
 
 describe('Url Parser', () => {
@@ -81,7 +80,7 @@ describe('Url Parser', () => {
           expect(variables.collection).toBe('listings');
           expect(variables.id).toBe(3);
           expect(variables.sort).toBe('desc');
-          expect(variables.userId).toEqual(jasmine.any(Array));
+          expect(variables.userId).toEqual([1,2,3]);
         });
       });
     });

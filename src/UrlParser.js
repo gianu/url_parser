@@ -25,7 +25,17 @@ export default class UrlPaser {
       let variables = variablePart.split('&');
       variables.forEach((key) => {
         let [k, v] = key.split('=');
-        map[k] = normalizeValue(v);
+
+        if(_.endsWith(k, '[]')) {
+          let normalizedKey = k.substring(0, k.length - 2);
+          if (map[normalizedKey]) {
+            map[normalizedKey].push(normalizeValue(v));
+          } else {
+            map[normalizedKey] = [normalizeValue(v)];
+          }
+        } else {
+          map[k] = normalizeValue(v);
+        }
       });
     }
 
