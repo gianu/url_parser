@@ -184,7 +184,7 @@ describe("Url Parser", () => {
 
       describe("with an object different from string", () => {
         it("throws an error", () => {
-          expect(() => new UrlParser({'a':'b'})).toThrow("Format String must be a string.");
+          expect(() => new UrlParser({"a": "b"})).toThrow("Format String must be a string.");
         });
       }); //describe: with an object different from string
     }); //describe: with invalid url instance

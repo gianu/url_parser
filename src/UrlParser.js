@@ -5,14 +5,15 @@ export default class UrlPaser {
   /*
    * @constructs UrlParser
    * @param {String} fmtString - The Format string to be used.
+   * @throws Error if format string is empty or a non string object.
    */
   constructor(fmtString="") {
     if(!_.isString(fmtString)) {
-      throw new Error('Format String must be a string.');
+      throw new Error("Format String must be a string.");
     }
 
     if(_.isEmpty(fmtString)) {
-      throw new Error('Format String must be provided.');
+      throw new Error("Format String must be provided.");
     }
 
     this.fmtString = fmtString;
