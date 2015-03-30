@@ -36,3 +36,13 @@ you can send a boolean as a second argument to extractVariables to override vari
  urlParser.extractVariables('/users/100/comments?userId=200', true);
  // => { 'userId': 200 }
 ```
+
+## Test
+
+To run the test simply:
+
+```bash
+$ npm install
+
+$ npm test
+```
