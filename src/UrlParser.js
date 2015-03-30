@@ -43,11 +43,9 @@ export default class UrlPaser {
   extractVariables(urlInstance="", override=false) {
     checkUrl(urlInstance, "Url");
 
-    let fmtParts = this.fmtString.split("/");
-
     let [url, querystring] = Parser.splitUrl(urlInstance);
 
-    let urlMap = Parser.parseUrl(fmtParts, url);
+    let urlMap = Parser.parseUrl(this.fmtString, url);
     let qsMap = Parser.parseQueryString(querystring);
 
     return _.merge(urlMap, qsMap, (url, qs) => {

@@ -14,9 +14,10 @@ export default class Parser {
    */
   static parseUrl(fmt="", urlString="") {
     let urlParts = urlString.split("/");
+    let fmtParts = fmt.split("/");
     let map = {};
 
-    fmt.forEach((key, index) => {
+    fmtParts.forEach((key, index) => {
       if (_.startsWith(key, ":")) {
         let normalizedKey = key.substring(1);
         map[normalizedKey] = normalizeValue(urlParts[index]);
@@ -34,23 +35,26 @@ export default class Parser {
    */
   static parseQueryString(queryString) {
     let map = {};
-    if (queryString) {
-      let variables = queryString.split("&");
-      variables.forEach((key) => {
-        let [k, v] = key.split("=");
 
-        if(_.endsWith(k, "[]")) {
-          let normalizedKey = k.substring(0, k.length - 2);
+    if (queryString) {
+      let sections = queryString.split("&");
+      sections.forEach((section) => {
+        let [key, value] = section.split("=");
+
+        if(_.endsWith(key, "[]")) {
+          let normalizedKey = key.substring(0, key.length - 2);
+
           if (map[normalizedKey]) {
-            map[normalizedKey].push(normalizeValue(v));
+            map[normalizedKey].push(normalizeValue(value));
           } else {
-            map[normalizedKey] = [normalizeValue(v)];
+            map[normalizedKey] = [normalizeValue(value)];
           }
         } else {
-          map[k] = normalizeValue(v);
+          map[key] = normalizeValue(value);
         }
       });
     }
+
     return map;
   }
 

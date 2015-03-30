@@ -99,6 +99,25 @@ describe("Url Parser", () => {
         });
       });
 
+      describe("with parameter with no value", () => {
+        beforeEach(() => {
+          let urlParser = new UrlParser("/:version/api/:collection/:id");
+          variables = urlParser.extractVariables("/6/api/listings/3?sort=&limit=10");
+        });
+
+        it("returns a map with 5 elements", () => {
+          expect(_.size(variables)).toBe(5);
+        });
+
+        it("returns the correct structure", () => {
+          expect(variables.version).toBe(6);
+          expect(variables.collection).toBe("listings");
+          expect(variables.id).toBe(3);
+          expect(variables.limit).toBe(10);
+          expect(variables.sort).toBe("");
+        });
+      });
+
       describe("with parameter overriding url variables", () => {
         let urlParser;
         beforeEach(() => {
